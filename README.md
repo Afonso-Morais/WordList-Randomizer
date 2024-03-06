@@ -11,7 +11,7 @@ Instructions:
 2. Enter the name of the file you want to use as your wordlist when prompted.
 3. The program will display a randomly selected word or phrase from the file.
 4. Press Enter to continue and see another random word.
-5. [*CRLH+C*] to stop the program
+5. [*CTRL+C*] to stop the program
 
 Example of a file:
 ```
