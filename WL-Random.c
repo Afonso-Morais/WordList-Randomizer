@@ -34,20 +34,20 @@
 #include "WL-Random.h"
 
 // Variables
-DIR *currentDir;					// Current working directory
+DIR *currentDir;				// Current working directory
 const char *dir_path = ".";			// Path of the directory
 
 char currentFile[100] = "";			// Current wordlist file
-FILE *file;							// Actual file
+FILE *file;					// Actual file
 
-char line[100];					    // Line of the wordlist
+char line[100];					// Line of the wordlist
 char words[5000][100];				// Max word count(5000) and max length(100)
-int wordCount = 0; 					// Amount of words
+int wordCount = 0; 				// Amount of words
 
 
 int main(int argc, char *argv[]) {
     
-	system(CLEAR);									// Clear screen
+	system(CLEAR);					// Clear screen
 	
     if(argc != 1){
         printf("Usage: %s\n", argv[0]);
@@ -64,15 +64,15 @@ int main(int argc, char *argv[]) {
    
     char *programName = strrchr(argv[0], '/');		// Extract the program name from the path
     if (programName != NULL) { programName++; } 	// Move past the '/'
-    else { programName = argv[0]; }					// If no '/', use the whole string
+    else { programName = argv[0]; }			// If no '/', use the whole string
 
     
-    drawFiles(programName);							// Start listing files from the current directory
+    drawFiles(programName);				// Start listing files from the current directory
 
 	openFile();	
-	getRandomWord();								// Print random word from word list for user
+	getRandomWord();				// Print random word from word list for user
 	
-    closedir(currentDir); 							// Close the directory
+    closedir(currentDir); 				// Close the directory
 
     return 0;
 }
@@ -105,24 +105,24 @@ void openFile(){
 
 		//Open file
 		file = fopen(currentFile, "r");
-		if(file == NULL){													// If is NULL (doesn't exist) give error message
+		if(file == NULL){								// If is NULL (doesn't exist) give error message
 			perror("Error Opening Wordlist");
 			printf("Make sure the file '%s' exists!\n", currentFile);
 		}
 	
-	}while(file == NULL);													// If is NULL (doesn't exist) loop until user types existing file
+	}while(file == NULL);									// If is NULL (doesn't exist) loop until user types existing file
 
 	// Break lines and ignore comments
 	while (fgets(line, sizeof(line), file) != NULL) {
 		
 
-		if (strncmp(line, "//", 2) == 0) {									// CHECK IF THE LINE IS COMMENTED WITH '//'
-            continue; 														// IGNORE/CONTINUE
+		if (strncmp(line, "//", 2) == 0) {						// CHECK IF THE LINE IS COMMENTED WITH '//'
+            continue; 										// IGNORE/CONTINUE
         }	
 
         char *commentPtr = strstr(line, "//");		
         if (commentPtr != NULL) {
-            *commentPtr = '\0'; 											// Null-terminate the line before the comment
+            *commentPtr = '\0'; 								// Null-terminate the line before the comment
 		}
 		
 		size_t length = strlen(line);
@@ -130,11 +130,11 @@ void openFile(){
             line[length - 1] = '\0';
         }
 
-		strcpy(words[wordCount], line);										// Copy the line to the words array
-		wordCount ++; 														// Increment the word counter by 1
+		strcpy(words[wordCount], line);							// Copy the line to the words array
+		wordCount ++; 									// Increment the word counter by 1
 	}
 
-	fclose(file);															// Close file not needed anymore
+	fclose(file);										// Close file not needed anymore
 }
 
 void getRandomWord(){
@@ -143,15 +143,15 @@ void getRandomWord(){
 
 	while(0 < 1){		
 		int randomIndex = rand() % wordCount;						// Get random Number
-		printf("\nRANDOM WORD/LINE IS:\n%s", words[randomIndex]);	// Output random number line
-		waitForInput();												// Wait for user to press ENTER
+		printf("\nRANDOM WORD/LINE IS:\n%s", words[randomIndex]);			// Output random number line
+		waitForInput();									// Wait for user to press ENTER
 	}
 }
 
 void waitForInput(){
 	int c;
-	printf("\n");
-	while ((c = getchar()) != '\n' && c != EOF);
+	printf("\n");										// Break line
+	while ((c = getchar()) != '\n' && c != EOF);						// Wait for user input
 	
 	clearInputBuffer();
 }

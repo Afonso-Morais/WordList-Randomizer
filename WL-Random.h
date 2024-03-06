@@ -38,7 +38,7 @@ void clearInputBuffer() {
         _getch();
     }
 }
-#else			// CASE IS UNIX BASED
+#else		// CASE IS UNIX BASED
 
 #include <unistd.h>
 #include <unistd.h>
@@ -52,6 +52,6 @@ void clearInputBuffer() {
 
 // Functions
 void drawFiles(const char *programName);		// Draws files tree
-void openFile();								// Reads input options for file and opens chosen file/wordlist
-void getRandomWord();							// Gets random word from the file/wordlist
-void waitForInput();							// Waits for user to press ENTER (continue)
+void openFile();					// Reads input options for file and opens chosen file/wordlist
+void getRandomWord();					// Gets random word from the file/wordlist
+void waitForInput();					// Waits for user to press ENTER (continue)
