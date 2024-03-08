@@ -31,6 +31,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <dirent.h>
+#include <time.h>
 #include "WL-Random.h"
 
 // Variables
@@ -46,6 +47,8 @@ int wordCount = 0; 				// Amount of words
 
 
 int main(int argc, char *argv[]) {
+
+	srand(time(NULL));				// Seed the random number with the current time				
     
 	system(CLEAR);					// Clear screen
 	
